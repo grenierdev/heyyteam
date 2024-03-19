@@ -1,5 +1,5 @@
 export interface Env {
 	OPENAI_API_KEY: string;
-	ASSISTANT: Queue;
-	CHANNEL: DurableObjectNamespace;
+	AGENT: DurableObjectNamespace;
+	ROOM: DurableObjectNamespace;
 }

@@ -1,7 +1,7 @@
 import { Application, t } from "@baseless/core/prelude";
 import { Env } from "../env";
 
-export const agentapp = new Application()
+export const roomapp = new Application()
 	.get("/hello", () => {
 		return Response.json({ hello: "ok" });
 	}, {
@@ -19,11 +19,11 @@ export const agentapp = new Application()
 		},
 	});
 
-export class AgentDurableObject implements DurableObject {
-	#fetch!: Awaited<ReturnType<typeof agentapp.build>>;
+export class RoomDurableObject implements DurableObject {
+	#fetch!: Awaited<ReturnType<typeof roomapp.build>>;
 	constructor(state: DurableObjectState, env: Env) {
 		state.blockConcurrencyWhile(async () => {
-			this.#fetch = await agentapp.decorate({}).build();
+			this.#fetch = await roomapp.decorate({}).build();
 		});
 	}
 	fetch(request: Request<unknown, CfProperties<unknown>>): Response | Promise<Response> {

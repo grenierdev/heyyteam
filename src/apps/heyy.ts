@@ -3,7 +3,8 @@ import { AuthenticationContext } from "@baseless/core/plugins/authentication/con
 import { agentapp } from "./agent";
 
 export const heyyapp = new Application()
-	// .demands<AuthenticationContext>()
+	.demands<{ agent: DurableObjectNamespace }>()
+	.demands<{ room: DurableObjectNamespace }>()
 	.get("/api/health", () => {
 		return Response.json({ status: "up" }, { status: 200 });
 	}, {
@@ -23,6 +24,19 @@ export const heyyapp = new Application()
 			},
 		},
 	})
-	.proxy("/agent/{agentid}", agentapp, ({ params }) => {
-		return Response.json({ agentid: params.agentid }, { status: 200 });
+	.proxy("/api/agent/{agentid}", agentapp, ({ request, params, agent }) => {
+		const id = agent.idFromName(params.agentid);
+		const stub = agent.get(id);
+		const url = new URL(request.url);
+		url.pathname = url.pathname.split("/").slice(4).join("/");
+		request = new Request(url, request);
+		return stub.fetch(request);
+	})
+	.proxy("/api/room/{roomid}", agentapp, ({ request, params, room }) => {
+		const id = room.idFromName(params.roomid);
+		const stub = room.get(id);
+		const url = new URL(request.url);
+		url.pathname = url.pathname.split("/").slice(4).join("/");
+		request = new Request(url, request);
+		return stub.fetch(request);
 	});
