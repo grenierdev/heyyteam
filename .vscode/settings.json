@@ -1,0 +1,16 @@
+{
+  "deno.enable": false,
+  "editor.formatOnSave": true,
+  "editor.insertSpaces": false,
+  "editor.detectIndentation": false,
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "package.json": "package-lock.json, import-map.json, .prettierrc, .editorconfig, tsconfig.json",
+    "wrangler.toml": ".dev.vars",
+    "*.mjs": "${capture}.mjs.map, ${capture}.d.ts, ${capture}.ts, ${capture}.js",
+    "*.ts": "${capture}.test.ts, ${capture}.bench.ts",
+    "*.tsx": "${capture}.test.tsx",
+    "*.css": "${capture}.css.map"
+  }
+}

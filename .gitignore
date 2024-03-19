@@ -1,0 +1,4 @@
+.deno
+.wrangler
+node_modules
+.dev*

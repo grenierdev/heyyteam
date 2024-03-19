@@ -1,0 +1,23 @@
+name = "heyyteam"
+main = "src/worker.ts"
+compatibility_date = "2023-08-14"
+
+#[[durable_objects.bindings]]
+#name = "CHANNEL"
+#class_name = "TutorChannel"
+#
+#[[migrations]]
+#tag = "v0.0"
+#new_classes = ["TutorChannel"]
+#
+#[[queues.producers]]
+#binding = "ASSISTANT"
+#queue = "messages-to-ai"
+#
+#[[queues.consumers]]
+#queue = "messages-to-ai"
+#max_concurrency = 2
+#max_batch_size = 1
+#max_retries = 10
+#max_batch_timeout = 30
+#

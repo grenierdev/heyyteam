@@ -1,0 +1,18 @@
+{
+  "name": "heyyteam",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev --port 8080"
+  },
+  "dependencies": {
+    "@baseless/core": "file:../baseless/core/npm"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240314.0",
+    "typescript": "^5.4.2",
+    "wrangler": "^3.34.2"
+  }
+}
